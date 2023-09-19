@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {
+      "description": "Take out rubbish",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "description": "Wash Car",
+      "completed": false,
+      "id": 2
+    },
+    {
+      "description": "Pick up shopping",
+      "completed": false,
+      "id": 3
+    },
+    {
+      "description": "Clean Gutters",
+      "completed": false,
+      "id": 4
+    }
+  ]
+}

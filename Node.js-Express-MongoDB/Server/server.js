@@ -1,7 +1,4 @@
-require("dotenv").config();
-
 const express = require("express");
-const taskRoutes = require("./routes/tasks");
 const cors = require("cors");
 
 const MongoClient = require("mongodb").MongoClient;
@@ -32,6 +29,6 @@ MongoClient.connect("mongodb://127.0.0.1:27017", { useUnifiedTopology: true })
   .catch(console.err);
 
 // listen for requests
-app.listen(process.env.PORT, () => {
-  console.log("listening on port ", process.env.PORT);
+app.listen(4000, function () {
+  console.log(`Listening on port ${this.address().port}`);
 });

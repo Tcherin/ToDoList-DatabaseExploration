@@ -1,4 +1,5 @@
 import TaskCard from "./TaskCard";
+import { postTask } from "./TaskService";
 
 const TaskList = ({
   tasks,
@@ -22,6 +23,7 @@ const TaskList = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    postTask(newTask);
     addTask(newTask);
   };
 

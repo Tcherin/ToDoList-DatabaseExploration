@@ -1,34 +1,16 @@
 import { useState, useEffect } from "react";
+import { getTasks } from "../components/TaskService";
 import TaskList from "../components/TaskList";
 
 const ListContainer = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
-  const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getTasks();
+    getTasks().then((allTasks) => {
+      setTasks(allTasks);
+    });
   }, []);
-
-  const getTasks = () => {
-    fetch("http://localhost:8000/tasks")
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("Could not fetch data for this resource");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setTasks(data);
-        setIsPending(false);
-        setError(null);
-      })
-      .catch((err) => {
-        setIsPending(false);
-        setError(err.message);
-      });
-  };
 
   const deleteTask = (task) => {
     if (task.completed === true) {
@@ -58,8 +40,6 @@ const ListContainer = () => {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-slate-100">
-      {error && <div>{error}</div>}
-      {isPending && <div className="p-6">Loading...</div>}
       {tasks && (
         <TaskList
           tasks={tasks}

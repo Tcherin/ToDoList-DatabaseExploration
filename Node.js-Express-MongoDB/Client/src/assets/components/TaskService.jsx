@@ -12,7 +12,7 @@ export const postTask = (payload) => {
   }).then((res) => res.json());
 };
 
-export const deleteTask = (id) => {
+export const removeTask = (id) => {
   return fetch(baseURL + id, {
     method: "DELETE",
   });

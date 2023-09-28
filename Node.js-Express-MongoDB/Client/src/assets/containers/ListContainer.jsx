@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getTasks } from "../components/TaskService";
+import TaskService from "../services/TaskService";
 import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
 
@@ -7,31 +7,29 @@ const ListContainer = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    getTasks().then((allTasks) => {
+    TaskService.getTasks().then((allTasks) => {
       setTasks(allTasks);
     });
   }, []);
 
-  const deleteTask = (task) => {
-    if (task.completed === true) {
-      const updatedTasks = tasks.filter((t) => t._id !== task._id);
-      setTasks(updatedTasks);
-    }
+  const addTask = (taskToAdd) => {
+    setTasks([...tasks, taskToAdd]);
   };
 
-  const addTask = (task) => {
-    setTasks([...tasks, task]);
+  const deleteTask = (idToDelete) => {
+    setTasks(tasks.filter((task) => task._id !== idToDelete._id));
   };
 
-  const updateTask = (task) => {
-    const updatedTasks = tasks.map((t) =>
-      t._id === task._id ? { ...t, completed: true } : t
+  const updateTask = (idToUpdate) => {
+    setTasks(
+      tasks.map((task) =>
+        task._id === idToUpdate._id ? { ...task, completed: true } : task
+      )
     );
-    setTasks(updatedTasks);
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-slate-100">
+    <div className="min-h-screen p-4 gap-3 flex flex-col justify-center items-center bg-slate-100">
       <TaskForm addTask={addTask} />
       {tasks && (
         <TaskList

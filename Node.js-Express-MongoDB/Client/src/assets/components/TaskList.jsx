@@ -10,7 +10,7 @@ const TaskList = ({ tasks, deleteTask, updateTask }) => {
   });
 
   return (
-    <main className="border-2 rounded-lg p-8 px-20 shadow-2xl bg-white">
+    <main className="flex flex-col border-2 rounded-lg p-8 px-20 shadow-2xl bg-white gap-4">
       <h1 className="font-semibold pb-1 text-3xl text-center">Task List</h1>
       <div className="flex flex-col gap-8">{listItems}</div>
     </main>

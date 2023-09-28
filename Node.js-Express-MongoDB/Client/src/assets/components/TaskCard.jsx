@@ -1,15 +1,15 @@
-import { removeTask } from "./TaskService";
-import { putTask } from "./TaskService";
+import TaskService from "../services/TaskService";
 
 const TaskCard = ({ task, deleteTask, updateTask }) => {
   const handleDelete = () => {
-    removeTask(task._id).then(() => {
-      deleteTask(task._id);
-    });
+    if (task.completed)
+      TaskService.removeTask(task._id).then(() => {
+        deleteTask(task._id);
+      });
   };
 
   const handleUpdate = () => {
-    putTask(task._id).then(() => {
+    TaskService.putTask(task._id).then(() => {
       updateTask(task._id);
     });
   };

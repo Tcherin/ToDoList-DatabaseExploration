@@ -8,7 +8,7 @@ const TaskCard = ({ task, deleteTask, updateTask }) => {
       });
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (task) => {
     TaskService.putTask(task._id).then(() => {
       updateTask(task._id);
     });

@@ -17,13 +17,13 @@ const ListContainer = () => {
   };
 
   const deleteTask = (idToDelete) => {
-    setTasks(tasks.filter((task) => task._id !== idToDelete._id));
+    setTasks(tasks.filter((task) => task._id !== idToDelete));
   };
 
   const updateTask = (idToUpdate) => {
     setTasks(
       tasks.map((task) =>
-        task._id === idToUpdate._id ? { ...task, completed: true } : task
+        task._id === idToUpdate ? { ...task, completed: true } : task
       )
     );
   };

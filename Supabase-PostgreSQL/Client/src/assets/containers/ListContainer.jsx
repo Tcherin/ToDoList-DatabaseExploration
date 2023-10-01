@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import supabase from "../../config/supabaseClient";
 import TaskService from "../services/TaskService";
 import TaskList from "../components/TaskList";
 import TaskForm from "../components/TaskForm";
